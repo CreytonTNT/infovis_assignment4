@@ -1,0 +1,38 @@
+import * as d3 from "d3"
+
+function YAxis(props) {
+    const { yScale, height, axisLabel} = props;
+    if (yScale) {
+        const yAxis = d3.axisLeft(yScale).ticks(9);
+            return (
+                <g>
+                    <g ref={node => d3.select(node).call(yAxis)} />
+                    <text style={{ textAnchor: 'end', fontSize: '15px' }} transform={`translate(20, 0)rotate(-90)`}>
+                        {axisLabel}
+                    </text>
+                </g>
+            );
+    }
+    return <g></g>;
+}
+
+export default YAxis;
+
+// function YAxis(props){
+//     const { yScale, height, axisLable } = props;
+//     if(yScale){
+//         return <g>
+            
+//         {/* //the if(yScale){...} means when xScale is not null, the component will return the y-axis; otherwise, it returns <g></g>
+//         //we use the if ... else ... in this place so that the code can work with the SSR in Next.js;
+//         //all your code should be put in this block. Remember to use typeof check if the xScale is linear or discrete. */}
+   
+//             <text style={{ textAnchor:'end', fontSize:'15px'}} transform={`translate(20, 0)rotate(-90)`}>
+//                 {axisLable}
+//             </text>
+//         </g>
+//     } else {
+//         return <g></g>
+//     }
+
+// }
